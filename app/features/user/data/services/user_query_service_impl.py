@@ -16,8 +16,8 @@ class UserQueryServiceImpl(UserQueryService):
     def __init__(self, session: Session):
         self.session: Session = session
 
-    def find_by_id(self, id_: int) -> UserReadModel | None:
-        result = self.session.get(User, id_)
+    def find_by_id(self, uid: int) -> UserReadModel | None:
+        result = self.session.get(User, uid)
 
         if result is None:
             return None

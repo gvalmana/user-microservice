@@ -45,8 +45,8 @@ class UserRepositoryImpl(UserRepository):
 
         return [user.to_entity() for user in result]
 
-    def find_by_id(self, id_: int) -> UserEntity | None:
-        result: User | None = self.session.get(User, id_)
+    def find_by_id(self, uid: int) -> UserEntity | None:
+        result: User | None = self.session.get(User, uid)
 
         if result is None:
             return None
@@ -57,13 +57,13 @@ class UserRepositoryImpl(UserRepository):
         user = User.from_entity(entity)
         update_data = user.to_dict()
 
-        for key in [User.updated_at.key, User.created_at.key, User.id_.key]:
+        for key in [User.updated_at.key, User.created_at.key, User.uid.key]:
             update_data.pop(key),
 
         statement = update(
             User
         ).where(
-            User.id_ == user.id_
+            User.uid == user.uid
         ).values(
             update_data
         ).returning(
@@ -75,11 +75,11 @@ class UserRepositoryImpl(UserRepository):
 
         return result.to_entity()
 
-    def delete_by_id(self, id_: int) -> UserEntity:
+    def delete_by_id(self, uid: int) -> UserEntity:
         statement = delete(
             User
         ).filter_by(
-            id_=id_
+            uid=uid
         ).returning(
             *User.__table__.columns
         )

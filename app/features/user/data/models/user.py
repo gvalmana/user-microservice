@@ -20,7 +20,7 @@ class User(Base):
 
     def to_entity(self) -> UserEntity:
         return UserEntity(
-            _id=self._id,
+            uid=self.uid,
             email=self.email,
             password=self.password,
             is_active=self.is_active,
@@ -31,7 +31,7 @@ class User(Base):
 
     def to_dict(self):
         return {
-            '_id': self._id,
+            'uid': self.uid,
             'email': self.email,
             'password': self.password,
             'is_active': self.is_active,
@@ -42,7 +42,7 @@ class User(Base):
 
     def to_read_model(self) -> UserReadModel:
         return UserReadModel(
-            _id=self._id,
+            uid=self.uid,
             email=self.email,
             password=self.password,
             is_active=self.is_active,
@@ -54,7 +54,7 @@ class User(Base):
     @staticmethod
     def from_entity(user: UserEntity) -> 'User':
         return User(
-            _id=user._id,
+            uid=user.uid,
             email=user.email,
             password=user.password,
             is_active=user.is_active,

@@ -11,7 +11,7 @@ class UserReadModel(UserBaseModel):
         UserReadModel represents data structure as a read model
     """
 
-    id_: int = Field(example=1111)
+    uid: int = Field(example=1111)
     email: str = Field(example='test@test.com')
     password: str = Field(example='password')
     is_active: bool = Field(example=True)
@@ -26,7 +26,7 @@ class UserReadModel(UserBaseModel):
     @staticmethod
     def from_entity(entity: UserEntity) -> 'UserReadModel':
         return UserReadModel(
-            id_=entity.id_,
+            uid=entity.uid,
             email=entity.email,
             password=entity.password,
             is_active=entity.is_active,

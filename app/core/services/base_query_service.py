@@ -6,7 +6,7 @@ _T = TypeVar('_T')
 class QueryService(ABC, Generic[_T]):
 
     @abstractmethod
-    def find_by_id(self, id_: int) -> _T | None:
+    def find_by_id(self, uid: int) -> _T | None:
         raise NotImplementedError()
 
     @abstractmethod

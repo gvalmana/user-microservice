@@ -10,7 +10,7 @@ from app.features.user.presentation.schemas.user_error_message import ErrorMessa
 
 
 @router.patch(
-    '/{id_}/',
+    '/{uid}/',
     response_model=UserReadModel,
     status_code=status.HTTP_200_OK,
     responses={
@@ -20,12 +20,12 @@ from app.features.user.presentation.schemas.user_error_message import ErrorMessa
     }
 )
 async def update_user(
-    id_: int,
+    uid: int,
     data: UserUpdateModel,
     update_user_use_case: UpdateUserUseCase = Depends(get_update_user_use_case)
 ):
     try:
-        user = update_user_use_case((id_, data))
+        user = update_user_use_case((uid, data))
     except UserNotFoundError:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND

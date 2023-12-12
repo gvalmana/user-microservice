@@ -28,8 +28,8 @@ class DeleteUserUseCaseImpl(DeleteUserUseCase):
         self.unit_of_work: UserUnitOfWork = unit_of_work
 
     def __call__(self, args: Tuple[int]) -> UserReadModel:
-        id_, = args
-        existing_user = self.unit_of_work.repository.find_by_id(id_)
+        uid, = args
+        existing_user = self.unit_of_work.repository.find_by_id(uid)
 
         if existing_user is None:
             raise UserNotFoundError()

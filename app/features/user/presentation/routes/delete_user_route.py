@@ -12,7 +12,7 @@ from app.features.user.presentation.schemas.user_error_message import ErrorMessa
 
 
 @router.delete(
-    '/{id_}/',
+    '/{uid}/',
     response_model=UserReadModel,
     status_code=status.HTTP_200_OK,
     responses={
@@ -22,11 +22,11 @@ from app.features.user.presentation.schemas.user_error_message import ErrorMessa
     }
 )
 def delete_user(
-    id_: int,
+    uid: int,
     delete_user_use_case: DeleteUserUseCase = Depends(get_delete_user_use_case)
 ):
     try:
-        user = delete_user_use_case((id_, ))
+        user = delete_user_use_case((uid, ))
     except UserNotFoundError:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND
