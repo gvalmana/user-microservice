@@ -1,6 +1,3 @@
-"""
-    Config module
-"""
 from pydantic import BaseSettings
 
 
