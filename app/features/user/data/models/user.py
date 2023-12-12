@@ -4,7 +4,7 @@ from sqlalchemy import Column, Boolean, String
 from sqlalchemy.orm import relationship, Mapped
 
 from app.features.user.domain.entities.user_query_model import UserReadModel
-from app.core.models.mysql.models import Base
+from app.core.models.postgres.models import Base
 from app.features.user.domain.entities.user_entity import UserEntity
 
 if TYPE_CHECKING:
@@ -12,26 +12,32 @@ if TYPE_CHECKING:
 
 
 class User(Base):
+    """
+        User DTO is an object associated with user entity
+    """
     __tablename__ = 'users'
 
     email: Mapped[str] | str = Column(String, unique=True, index=True)
     password: Mapped[str] | str = Column(String)
     is_active: Mapped[bool] | bool | None = Column(Boolean, default=True)
 
+    tasks: Mapped[list['Task']] = relationship('Task', back_populates='owner', uselist=True)
+
     def to_entity(self) -> UserEntity:
         return UserEntity(
-            uid=self.uid,
+            id_=self.id_,
             email=self.email,
             password=self.password,
             is_active=self.is_active,
             created_at=self.created_at,
             updated_at=self.updated_at,
-            is_deleted=self.is_deleted
+            is_deleted=self.is_deleted,
+            tasks=[task.id_ for task in self.tasks]
         )
 
     def to_dict(self):
         return {
-            'uid': self.uid,
+            'id_': self.id_,
             'email': self.email,
             'password': self.password,
             'is_active': self.is_active,
@@ -42,19 +48,20 @@ class User(Base):
 
     def to_read_model(self) -> UserReadModel:
         return UserReadModel(
-            uid=self.uid,
+            id_=self.id_,
             email=self.email,
             password=self.password,
             is_active=self.is_active,
             is_deleted=self.is_deleted,
             created_at=self.created_at,
-            updated_at=self.updated_at
+            updated_at=self.updated_at,
+            tasks=[task.id_ for task in self.tasks]
         )
 
     @staticmethod
     def from_entity(user: UserEntity) -> 'User':
         return User(
-            uid=user.uid,
+            id_=user.id_,
             email=user.email,
             password=user.password,
             is_active=user.is_active,

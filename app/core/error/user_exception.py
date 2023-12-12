@@ -1,3 +1,6 @@
+"""
+    User exceptions
+"""
 from app.core.error.base_exception import BaseError
 
 

@@ -15,7 +15,7 @@ class UserEntity(object):
 
     def __init__(
         self,
-        uid: int | None,
+        id_: int | None,
         email: str,
         password: str,
         is_active: bool | None = True,
@@ -24,7 +24,7 @@ class UserEntity(object):
         is_deleted: bool | None = False,
         tasks: list[int] = None
     ):
-        self.uid = uid
+        self.id_ = id_
         self.email = email
         self.password = password
         self.is_active = is_active
@@ -57,7 +57,7 @@ class UserEntity(object):
 
     def __eq__(self, other: object) -> bool:
         if isinstance(other, UserEntity):
-            return self.uid == other.uid
+            return self.id_ == other.id_
 
         return False
 

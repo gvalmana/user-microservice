@@ -37,5 +37,5 @@ def create_user(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR
         )
 
-    response.headers['location'] = f"{request.url.path}{user.uid}"
+    response.headers['location'] = f"{request.url.path}{user.id_}"
     return user

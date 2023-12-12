@@ -10,7 +10,7 @@ from app.features.user.presentation.schemas.user_error_message import ErrorMessa
 
 
 @router.get(
-    '/{uid}/',
+    '/{id_}/',
     response_model=UserReadModel,
     status_code=status.HTTP_200_OK,
     responses={
@@ -20,11 +20,11 @@ from app.features.user.presentation.schemas.user_error_message import ErrorMessa
     }
 )
 def get_user(
-    uid: int,
+    id_: int,
     get_user_use_case_: GetUserUseCase = Depends(get_user_use_case)
 ):
     try:
-        user = get_user_use_case_((uid, ))
+        user = get_user_use_case_((id_, ))
     except UserNotFoundError:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND

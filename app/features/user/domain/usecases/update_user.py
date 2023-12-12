@@ -23,9 +23,9 @@ class UpdateUserUseCaseImpl(UpdateUserUseCase):
         self.unit_of_work = unit_of_work
 
     def __call__(self, args: Tuple[int, UserUpdateModel]) -> UserReadModel:
-        uid, update_data = args
+        id_, update_data = args
 
-        existing_user: Optional[UserEntity] = self.unit_of_work.repository.find_by_id(uid)
+        existing_user: Optional[UserEntity] = self.unit_of_work.repository.find_by_id(id_)
 
         if existing_user is None:
             raise UserNotFoundError()

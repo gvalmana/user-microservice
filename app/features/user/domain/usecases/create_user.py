@@ -27,7 +27,7 @@ class CreateUserUseCaseImpl(CreateUserUseCase):
         data, = args
 
         user = UserEntity(
-            uid=None,
+            id_=None,
             **data.dict()
         )
 

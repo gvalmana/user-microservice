@@ -28,10 +28,10 @@ class GetUserUseCaseImpl(GetUserUseCase):
         self.service: UserQueryService = service
 
     def __call__(self, args: Tuple[int]) -> UserReadModel:
-        uid, = args
+        id_, = args
 
         try:
-            user = self.service.find_by_id(uid)
+            user = self.service.find_by_id(id_)
             if user is None:
                 raise UserNotFoundError()
         except Exception:
