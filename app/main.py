@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 
-from app.core.database.postgres.database import engine
-from app.core.models.postgres import models
+from app.core.database.mysql.database import engine
+from app.core.models.mysql import models
 from app.features.user.presentation.routes.user_routes import user_router
 
 app = FastAPI()

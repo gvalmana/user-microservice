@@ -1,3 +1,6 @@
+"""
+    Sql alchemy database module
+"""
 from typing import Iterator
 
 from sqlalchemy import create_engine
@@ -8,7 +11,7 @@ from app.dependencies import get_settings
 
 __SETTINGS: Settings = get_settings()
 
-__SQLALCHEMY_DATABASE_URL = 'mysql://{db_user}:{db_pass}@{db_host}/{db_name}'.format(
+__SQLALCHEMY_DATABASE_URL = 'postgresql://{db_user}:{db_pass}@{db_host}/{db_name}'.format(
     **dict(__SETTINGS)
 )
 
