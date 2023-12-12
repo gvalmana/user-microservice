@@ -21,7 +21,7 @@ class UserReadModel(UserBaseModel):
     tasks: list[int]
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
     @staticmethod
     def from_entity(entity: UserEntity) -> 'UserReadModel':
