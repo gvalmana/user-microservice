@@ -12,7 +12,7 @@ from app.features.task.domain.usecases.delete_task import DeleteTaskUseCase, Del
 from app.features.task.domain.usecases.get_task import GetTaskUseCase, GetTaskUseCaseImpl
 from app.features.task.domain.usecases.get_tasks import GetTasksUseCase, GetTasksUseCaseImpl
 from app.features.task.domain.usecases.update_task import UpdateTaskUseCase, UpdateTaskUseCaseImpl
-from app.core.database.postgres.database import get_session
+from app.core.database.mysql.database import get_session
 
 
 def get_task_query_service(

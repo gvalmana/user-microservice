@@ -3,7 +3,7 @@ from typing import TypeVar, TYPE_CHECKING
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship, Mapped
 
-from app.core.models.postgres.models import Base
+from app.core.models.mysql.models import Base
 from app.features.task.domain.entities.task_entity import TaskEntity
 from app.features.task.domain.entities.task_query_model import TaskReadModel
 

@@ -14,7 +14,7 @@ class TaskReadModel(TaskBaseModel):
     updated_at: datetime
 
     class Config(object):
-        orm_mode = True
+        from_attributes = True
 
     @classmethod
     def from_entity(cls, entity: TaskEntity) -> 'TaskReadModel':

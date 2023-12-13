@@ -4,7 +4,7 @@ from sqlalchemy import Column, Boolean, String
 from sqlalchemy.orm import relationship, Mapped
 
 from app.features.user.domain.entities.user_query_model import UserReadModel
-from app.core.models.postgres.models import Base
+from app.core.models.mysql.models import Base
 from app.features.user.domain.entities.user_entity import UserEntity
 
 if TYPE_CHECKING:

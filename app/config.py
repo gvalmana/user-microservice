@@ -1,8 +1,7 @@
 """
     Config module
 """
-from pydantic import BaseSettings
-
+from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
     app_name: str = 'To-Do Rest API'
